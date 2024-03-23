@@ -16,11 +16,11 @@
                             <p class="text-muted mb-4">Create a login split page using Bootstrap 4.</p>
                             <form>
                                 <div class="form-group mb-3">
-                                    <input id="inputEmail" type="email" placeholder="Email address" required=""
+                                    <input id="inputEmail" type="email" name="email" [(ngModel)]="loginObj.email" placeholder="Email address" required=""
                                         autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputPassword" type="password" placeholder="Password" required=""
+                                    <input id="inputPassword" name="password" type="password" [(ngModel)]="loginObj.password" placeholder="Password" required=""
                                         class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                 </div>
                                 <div class="custom-control custom-checkbox mb-3">

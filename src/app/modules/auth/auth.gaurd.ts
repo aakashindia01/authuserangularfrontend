@@ -1,25 +1,23 @@
 import { Injectable, inject } from "@angular/core";
-import { CanActivateFn } from "@angular/router";
-
-@Injectable({
-    providedIn: 'root'
-})
-class UserToken {}
+import { CanActivateFn, Router } from "@angular/router";
+import { AuthService } from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
 class PermissionsService {
-  canActivate(currentUser: UserToken, userId: string): boolean {
-    return true;
-  }
-  canMatch(currentUser: UserToken): boolean {
-    return true;
+  constructor(private authService: AuthService,  private router: Router){}
+  canActivate(): boolean {
+    console.log('isLoggedIn',this.authService.isLoggedIn)
+    if(!this.authService.isLoggedIn){
+      this.router.navigate(['/login']);
+      return this.authService.isLoggedIn;
+    }
+    return this.authService.isLoggedIn;;
   }
 }
 
 export const authGaurd: CanActivateFn = () =>{
     const permissionsService = inject(PermissionsService);
-    const userToken = inject(UserToken);
-    return permissionsService.canActivate(userToken, '1')
+    return permissionsService.canActivate()
 }
