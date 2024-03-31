@@ -1,48 +1,54 @@
 <div class="container-fluid">
-    <div class="row no-gutter">
-        <!-- The image half -->
-        <div class="col-md-6 d-none d-md-flex bg-image"></div>
-
-
-        <!-- The content half -->
-        <div class="col-md-6 bg-light">
-            <div class="login d-flex align-items-center py-5">
-
-                <!-- Demo content-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-10 col-xl-7 mx-auto">
-                            <h3 class="display-4">Login</h3>
-                            <p class="text-muted mb-4">Create a login split page using Bootstrap 4.</p>
-                            <form>
-                                <div class="form-group mb-3">
-                                    <input id="inputEmail" type="email" name="email" [(ngModel)]="loginObj.email" placeholder="Email address" required=""
-                                        autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input id="inputPassword" name="password" type="password" [(ngModel)]="loginObj.password" placeholder="Password" required=""
-                                        class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
-                                </div>
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input id="customCheck1" type="checkbox" checked class="custom-control-input">
-                                    <label for="customCheck1" class="custom-control-label">Remember password</label>
-                                </div>
-                                <button type="submit" (click)="login()"
-                                    class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Signin</button>
-                                <div class="text-center d-flex justify-content-between mt-4">
-                                    <p>Snippet by <a href="/home"
-                                            class="font-italic text-muted">
-                                            <u>Boostrapious</u>
-                                        </a>
-                                    </p>
-                                </div>
-                            </form>
+    <div class="row justify-content-center">
+        <div class="col-md-12 col-lg-10">
+            <div class="wrap d-md-flex">
+                <div class="img" style="background-color: black;"></div>
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="d-flex">
+                        <div class="w-100">
+                            <h3 class="mb-4">Sign In</h3>
+                        </div>
+                        <div class="w-100">
+                            <i class="bi bi-google"></i>
+                            <p class="social-media d-flex justify-content-end">
+                                
+                                <a 
+                                    class="social-icon d-flex align-items-center justify-content-center"><span
+                                        class="fa fa-facebook"></span></a>
+                                <button (click)="authLogin()"
+                                    class="social-icon d-flex align-items-center justify-content-center"><span
+                                    class="fa fa-google"></span></button>
+                            </p>
                         </div>
                     </div>
-                </div><!-- End -->
-
+                    <form action="#" class="signin-form">
+                        <div class="form-group mb-3">
+                            <label class="label" for="name">email</label>
+                            <input type="text" class="form-control" name="email" [(ngModel)]="loginObj.email" placeholder="Username" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="label" for="password">Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="loginObj.password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" (click)="login()" class="form-control btn btn-primary rounded submit px-3">Sign
+                                In</button>
+                        </div>
+                        <div class="form-group d-md-flex">
+                            <div class="w-50 text-left">
+                                <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                <a href="#">Forgot Password</a>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
+                </div>
             </div>
-        </div><!-- End -->
-
+        </div>
     </div>
 </div>

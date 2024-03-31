@@ -9,8 +9,14 @@ export class SessionService {
 
     }
 
-    setCookies(){
-        document.cookie = 'token=dummy';
+    setCookies(name: string, value: string, days: number) {
+        let expires = '';
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = `; expires=${date.toUTCString()}`;
+        }
+        document.cookie = `${name}=${value || ''}${expires}; path=/`;
     }
 
     setSession(key: string, value: string){
@@ -18,10 +24,11 @@ export class SessionService {
     }
 
     getCookies(key: string){
+        console.log(document.cookie)
         return document.cookie
     }
 
-    getSesssion(key: string){
+    getSession(key: string){
         return sessionStorage.getItem(key);
     }
 
@@ -29,7 +36,12 @@ export class SessionService {
         sessionStorage.clear();
     }
     clearCookies(){
-        document.cookie = '';
+        const cookies = document.cookie.split(';');
+        cookies.forEach(cookie => {
+            const cookieParts = cookie.split('=');
+            const cookieName = cookieParts[0].trim();
+            document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        });
     }
     clearLocalStorage(){
         localStorage.clear();

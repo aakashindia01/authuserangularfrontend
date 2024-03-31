@@ -1,19 +1,23 @@
 import { Injectable, inject } from "@angular/core";
 import { CanActivateFn, Router } from "@angular/router";
 import { AuthService } from "./auth.service";
+import { Observable, map } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 class PermissionsService {
   constructor(private authService: AuthService,  private router: Router){}
-  canActivate(): boolean {
-    console.log('isLoggedIn',this.authService.isLoggedIn)
-    if(!this.authService.isLoggedIn){
-      this.router.navigate(['/login']);
-      return this.authService.isLoggedIn;
-    }
-    return this.authService.isLoggedIn;;
+  canActivate(): Observable<boolean> {
+    return this.authService.getIsLoggedIn().pipe(
+      map(isLoggedIn => {
+        console.log('isLoggedIn', isLoggedIn)
+        if (!isLoggedIn) {
+          this.router.navigate(['/login']);
+        }
+        return isLoggedIn;
+      })
+    );
   }
 }
 

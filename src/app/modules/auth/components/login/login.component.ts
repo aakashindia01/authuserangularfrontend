@@ -20,8 +20,6 @@ export class LoginComponent {
     this.http.post('http://localhost:3000/api/auth/login', this.loginObj).subscribe((res: any)=>{
       console.log("val",res);
       this.session.setSession('token', res.token)
-      this.session.setCookies();
-      this.authService.login();
       this.router.navigate(['/home']);
     },
     (err)=>{
@@ -29,5 +27,9 @@ export class LoginComponent {
       this.router.navigate(['/login']);
     })
     
+  }
+
+  authLogin(): void {
+    window.location.href = 'http://localhost:3000/api/auth/google';
   }
 }

@@ -14,7 +14,8 @@ export class HomeComponent implements OnInit {
   userDetail = {
     name: '',
     email: '',
-    role: ''
+    role: '',
+    profilePhoto: ''
   }
 
   ngOnInit(){
@@ -26,6 +27,9 @@ export class HomeComponent implements OnInit {
       next: (res: any)=>{
         console.log(res)
         this.userDetail.name = res.user.name;
+        this.userDetail.email = res.user.email;
+        this.userDetail.profilePhoto = res.user?.profilePhoto;
+        this.userDetail.role = res.user?.isAdmin ? "Admin" : "User";
       },
       error: (error)=>{
         console.log(error)
@@ -37,8 +41,11 @@ export class HomeComponent implements OnInit {
     this.session.clearSession();
     this.session.clearLocalStorage();
     this.session.clearCookies();
-    this.homeService.logout().subscribe();
-    this.authService.logout();
+    alert('logout')
+    this.homeService.logout().subscribe((res)=>{
+      console.log(res);
+    });
     this.router.navigate(['/login']);
   }
+  
 }
